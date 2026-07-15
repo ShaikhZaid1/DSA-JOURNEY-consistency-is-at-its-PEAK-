@@ -1,0 +1,499 @@
+# Day 01/100 - Recursion
+
+## 📌 What is Recursion?
+
+Recursion is a programming technique where a function calls itself to solve a smaller version of the same problem until a stopping condition (Base Condition) is reached.
+
+Instead of using loops, recursion repeatedly calls itself.
+
+### Syntax
+
+```cpp
+void function()
+{
+    // Base Condition
+
+    // Recursive Call
+    function();
+}
+Example
+#include<iostream>
+using namespace std;
+
+void print()
+{
+    cout<<"Hello"<<endl;
+    print();
+}
+
+int main()
+{
+    print();
+}
+Output
+Hello
+Hello
+Hello
+Hello
+...
+(Stack Overflow)
+
+The function never stops because there is no Base Condition.
+
+What is Stack Overflow?
+
+Whenever a function is called, it gets stored inside the Call Stack.
+
+If the function keeps calling itself forever, the stack becomes full and the program crashes.
+
+This is called Stack Overflow.
+
+main()
+   ↓
+print()
+   ↓
+print()
+   ↓
+print()
+   ↓
+print()
+   ↓
+Stack Overflow
+What is Base Condition?
+
+A Base Condition is the condition that stops recursion.
+
+Without it, recursion will continue forever.
+
+Example
+void print(int count)
+{
+    if(count==5)
+        return;
+
+    cout<<"Hello"<<endl;
+
+    print(count+1);
+}
+
+Output
+
+Hello
+Hello
+Hello
+Hello
+Hello
+How Recursion Works
+main()
+
+↓
+
+print(1)
+
+↓
+
+print(2)
+
+↓
+
+print(3)
+
+↓
+
+Base Condition
+
+↓
+
+Returns Back
+
+↓
+
+print(2)
+
+↓
+
+print(1)
+
+↓
+
+main()
+Time Complexity
+
+For most simple recursion problems:
+
+Time Complexity = O(n)
+
+Space Complexity = O(n)
+
+Reason:
+Every recursive call is stored in the Call Stack.
+
+
+---
+
+# Problem 1 – Print Name N Times
+
+```cpp
+#include<iostream>
+using namespace std;
+
+void printName(int i,int n)
+{
+    if(i>n)
+        return;
+
+    cout<<"Zaid"<<endl;
+
+    printName(i+1,n);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    printName(1,n);
+}
+Example
+
+Input
+
+5
+
+Output
+
+Zaid
+Zaid
+Zaid
+Zaid
+Zaid
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 2 – Print 1 to N
+#include<iostream>
+using namespace std;
+
+void print(int i,int n)
+{
+    if(i>n)
+        return;
+
+    cout<<i<<" ";
+
+    print(i+1,n);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    print(1,n);
+}
+
+Example
+
+Input
+
+5
+
+Output
+
+1 2 3 4 5
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 3 – Print N to 1
+#include<iostream>
+using namespace std;
+
+void print(int i,int n)
+{
+    if(i<1)
+        return;
+
+    cout<<i<<" ";
+
+    print(i-1,n);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    print(n,n);
+}
+
+Output
+
+5 4 3 2 1
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 4 – Print 1 to N (Backtracking)
+#include<iostream>
+using namespace std;
+
+void print(int i,int n)
+{
+    if(i<1)
+        return;
+
+    print(i-1,n);
+
+    cout<<i<<" ";
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    print(n,n);
+}
+
+Output
+
+1 2 3 4 5
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 5 – Print N to 1 (Backtracking)
+#include<iostream>
+using namespace std;
+
+void print(int i,int n)
+{
+    if(i>n)
+        return;
+
+    print(i+1,n);
+
+    cout<<i<<" ";
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    print(1,n);
+}
+
+Output
+
+5 4 3 2 1
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 6 – Sum of First N Numbers
+#include<iostream>
+using namespace std;
+
+int sum(int n)
+{
+    if(n==0)
+        return 0;
+
+    return n+sum(n-1);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    cout<<sum(n);
+}
+
+Example
+
+Input
+
+5
+
+Output
+
+15
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 7 – Reverse an Array (Two Pointers)
+#include<iostream>
+using namespace std;
+
+void reverse(int arr[],int l,int r)
+{
+    if(l>=r)
+        return;
+
+    swap(arr[l],arr[r]);
+
+    reverse(arr,l+1,r-1);
+}
+
+int main()
+{
+    int arr[]={1,2,3,4,5};
+
+    reverse(arr,0,4);
+
+    for(int i=0;i<5;i++)
+        cout<<arr[i]<<" ";
+}
+
+Output
+
+5 4 3 2 1
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 8 – Reverse Array (Using n/2)
+#include<iostream>
+using namespace std;
+
+void reverse(int arr[],int i,int n)
+{
+    if(i>=n/2)
+        return;
+
+    swap(arr[i],arr[n-i-1]);
+
+    reverse(arr,i+1,n);
+}
+
+int main()
+{
+    int arr[]={1,2,3,4,5};
+
+    reverse(arr,0,5);
+
+    for(int i=0;i<5;i++)
+        cout<<arr[i]<<" ";
+}
+
+Output
+
+5 4 3 2 1
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 9 – Check Palindrome String
+#include<iostream>
+using namespace std;
+
+bool palindrome(string s,int i)
+{
+    if(i>=s.size()/2)
+        return true;
+
+    if(s[i]!=s[s.size()-i-1])
+        return false;
+
+    return palindrome(s,i+1);
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+
+    cout<<palindrome(s,0);
+}
+
+Example
+
+Input
+
+madam
+
+Output
+
+1
+
+Time Complexity
+
+O(n)
+
+Space Complexity
+
+O(n)
+Problem 10 – Fibonacci Number
+#include<iostream>
+using namespace std;
+
+int fibonacci(int n)
+{
+    if(n<=1)
+        return n;
+
+    return fibonacci(n-1)+fibonacci(n-2);
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+
+    cout<<fibonacci(n);
+}
+
+Example
+
+Input
+
+6
+
+Output
+
+8
+
+Time Complexity
+
+O(2^n)
+
+Space Complexity
+
+O(n)
