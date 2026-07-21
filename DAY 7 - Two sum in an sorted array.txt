@@ -1,0 +1,78 @@
+Problem Statement
+
+We need to find two elements in a sorted array whose sum is equal to a given target value.
+
+Approach
+
+To do this we will follow these steps:
+
+We will place one pointer at the beginning of the array.
+We will place another pointer at the end of the array.
+We will calculate the sum of the two elements.
+If the sum is equal to the target, we have found our answer.
+If the sum is smaller than the target, we will move the left pointer one step forward.
+If the sum is greater than the target, we will move the right pointer one step backward.
+We will repeat this process until the two pointers meet.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={2,7,11,15};
+    int n=4;
+    int target=9;
+
+    int left=0;
+    int right=n-1;
+
+    while(left<right)
+    {
+        int sum=array[left]+array[right];
+
+        if(sum==target)
+        {
+            cout<<"Pair Found: "<<array[left]<<" "<<array[right];
+            return 0;
+        }
+        else if(sum<target)
+        {
+            left++;
+        }
+        else
+        {
+            right--;
+        }
+    }
+
+    cout<<"Pair Not Found";
+}
+Example
+
+If we have the array
+
+2 7 11 15
+
+and the target is
+
+9
+
+The output will be
+
+Pair Found: 2 7
+
+This is because the sum of 2 and 7 is equal to the target value 9.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that each element is visited at most once while moving the two pointers.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
