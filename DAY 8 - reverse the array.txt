@@ -1,0 +1,131 @@
+Problem 1 – Reverse an Array (Using Temporary Array)
+Problem Statement
+
+We need to reverse all the elements of an array.
+
+Approach
+
+To do this we will follow these steps:
+
+We will create a temporary array.
+We will copy the elements of the original array into the temporary array in reverse order.
+Finally, we will copy the elements back to the original array.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,2,3,4,5};
+    int n=5;
+
+    int temp[n];
+
+    for(int i=0;i<n;i++)
+    {
+        temp[i]=array[n-i-1];
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        array[i]=temp[i];
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<array[i]<<" ";
+    }
+}
+Example
+
+If we have the array
+
+1 2 3 4 5
+
+After reversing the array, it becomes
+
+5 4 3 2 1
+
+This is because the first element becomes the last element, the second element becomes the second last element, and so on.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that every element is visited once while reversing the array.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(n)
+
+This is because we use an additional temporary array of size n.
+
+Problem 2 – Reverse an Array (Using Two Pointers)
+Problem Statement
+
+We need to reverse all the elements of an array without using any extra space.
+
+Approach
+
+To do this we will follow these steps:
+
+We will place one pointer at the beginning of the array.
+We will place another pointer at the end of the array.
+We will swap the elements at both pointers.
+We will move the left pointer one step forward and the right pointer one step backward.
+We will repeat this process until both pointers meet.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,2,3,4,5};
+    int n=5;
+
+    int left=0;
+    int right=n-1;
+
+    while(left<right)
+    {
+        swap(array[left],array[right]);
+        left++;
+        right--;
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<array[i]<<" ";
+    }
+}
+Example
+
+If we have the array
+
+1 2 3 4 5
+
+After reversing the array, it becomes
+
+5 4 3 2 1
+
+This is because we keep swapping the first and last elements until the entire array is reversed.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that each element is processed only once.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
+
+This means that no extra array is used, so the additional space required is constant.
