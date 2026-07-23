@@ -1,0 +1,79 @@
+Remove Duplicates from Sorted Array (Two Pointer Approach)
+Problem Statement
+
+We need to remove all duplicate elements from a sorted array using the Two Pointer Technique.
+
+The unique elements should be placed at the beginning of the array, and we should return the number of unique elements.
+
+Approach
+
+To do this we will follow these steps:
+
+We will maintain two pointers:
+i → Points to the last unique element.
+j → Traverses the array.
+We will start i from the first element and j from the second element.
+If the current element is different from the previous unique element, we will move i forward and copy the current element.
+At the end, the first i + 1 elements of the array will contain all the unique elements.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,1,2,2,3,3,4,4,5};
+    int n=9;
+
+    int i=0;
+
+    for(int j=1;j<n;j++)
+    {
+        if(array[i]!=array[j])
+        {
+            i++;
+            array[i]=array[j];
+        }
+    }
+
+    cout<<"Number of unique elements = "<<i+1<<endl;
+
+    cout<<"Array after removing duplicates:"<<endl;
+
+    for(int k=0;k<=i;k++)
+    {
+        cout<<array[k]<<" ";
+    }
+
+    return 0;
+}
+Example
+
+If we have the array
+
+1 1 2 2 3 3 4 4 5
+
+After removing the duplicate elements, the array becomes
+
+1 2 3 4 5
+
+The number of unique elements is
+
+5
+
+This is because each duplicate element is removed, and only one occurrence of every element is kept.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that every element of the array is visited only once.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
+
+This means that no extra array is used, so the additional space required remains constant.
