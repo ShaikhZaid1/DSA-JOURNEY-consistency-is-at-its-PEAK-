@@ -1,0 +1,92 @@
+Maximum Average Subarray
+Problem Statement
+
+We need to find the maximum average of any contiguous subarray of size K.
+
+Approach
+
+To do this we will follow these steps:
+
+We will use the Sliding Window technique.
+First, we will calculate the sum of the first K elements.
+We will store this sum as the maximum sum.
+Then we will slide the window one element at a time:
+Add the new element entering the window.
+Remove the element leaving the window.
+After each slide, we will update the maximum sum if the current window sum is greater.
+Finally, we will divide the maximum sum by K to get the maximum average.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,12,-5,-6,50,3};
+    int n=6;
+    int k=4;
+
+    int windowSum=0;
+
+    for(int i=0;i<k;i++)
+    {
+        windowSum+=array[i];
+    }
+
+    int maxSum=windowSum;
+
+    for(int i=k;i<n;i++)
+    {
+        windowSum+=array[i];
+        windowSum-=array[i-k];
+
+        if(windowSum>maxSum)
+        {
+            maxSum=windowSum;
+        }
+    }
+
+    double maximumAverage=(double)maxSum/k;
+
+    cout<<maximumAverage;
+
+    return 0;
+}
+Example
+
+If we have the array
+
+1 12 -5 -6 50 3
+
+and
+
+K = 4
+
+The possible subarrays are
+
+1 12 -5 -6      Average = 0.5
+
+12 -5 -6 50     Average = 12.75
+
+-5 -6 50 3      Average = 10.5
+
+The maximum average is
+
+12.75
+
+This is because the subarray 12 -5 -6 50 has the highest average among all subarrays of size 4.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that every element is processed only once while sliding the window.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
+
+This means that only a few extra variables are used, so the additional space required remains constant.
