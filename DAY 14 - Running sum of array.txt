@@ -1,0 +1,70 @@
+Running Sum of 1D Array
+Problem Statement
+
+We need to find the running sum of a 1D array.
+
+The running sum at any index is the sum of all the elements from the beginning of the array up to that index.
+
+Approach
+
+To do this we will follow these steps:
+
+We will start from the second element of the array.
+At each index, we will add the previous running sum to the current element.
+We will repeat this process until we reach the last element.
+The modified array itself will contain the running sums.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,2,3,4};
+    int n=4;
+
+    for(int i=1;i<n;i++)
+    {
+        array[i]=array[i]+array[i-1];
+    }
+
+    for(int i=0;i<n;i++)
+    {
+        cout<<array[i]<<" ";
+    }
+
+    return 0;
+}
+Example
+
+If we have the array
+
+1 2 3 4
+
+The running sum of the array is
+
+1 3 6 10
+
+This is because
+
+1
+
+1 + 2 = 3
+
+1 + 2 + 3 = 6
+
+1 + 2 + 3 + 4 = 10
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that every element of the array is visited only once.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
+
+This means that no extra array is used, so the additional space required remains constant.
