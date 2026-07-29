@@ -1,0 +1,85 @@
+Find Pivot Index
+Problem Statement
+
+We need to find the Pivot Index of an array.
+
+A Pivot Index is an index where the sum of all the elements on the left is equal to the sum of all the elements on the right.
+
+If no such index exists, we will return -1.
+
+Approach
+
+To do this we will follow these steps:
+
+We will first calculate the total sum of all the elements in the array.
+We will maintain a variable called leftSum, initially set to 0.
+While traversing the array:
+We will calculate the rightSum by subtracting the current element and the left sum from the total sum.
+If leftSum is equal to rightSum, then the current index is the Pivot Index.
+Otherwise, we will add the current element to leftSum and continue.
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={1,7,3,6,5,6};
+    int n=6;
+
+    int totalSum=0;
+
+    for(int i=0;i<n;i++)
+    {
+        totalSum+=array[i];
+    }
+
+    int leftSum=0;
+
+    for(int i=0;i<n;i++)
+    {
+        int rightSum=totalSum-leftSum-array[i];
+
+        if(leftSum==rightSum)
+        {
+            cout<<"Pivot Index = "<<i;
+            return 0;
+        }
+
+        leftSum+=array[i];
+    }
+
+    cout<<"-1";
+
+    return 0;
+}
+Example
+
+If we have the array
+
+1 7 3 6 5 6
+
+The Pivot Index is
+
+3
+
+This is because
+
+Left Sum  = 1 + 7 + 3 = 11
+
+Right Sum = 5 + 6 = 11
+
+Since both sums are equal, index 3 is the Pivot Index.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that we traverse the array only once after calculating the total sum.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(1)
