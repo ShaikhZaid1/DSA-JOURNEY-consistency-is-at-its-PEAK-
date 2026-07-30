@@ -1,0 +1,87 @@
+Subarray Sum Equals K
+Problem Statement
+
+We need to find the total number of continuous subarrays whose sum is equal to a given value K.
+
+Approach
+
+To do this we will follow these steps
+
+We will use a Prefix Sum along with a Hash Map.
+We will maintain a running prefix sum while traversing the array.
+The hash map will store the frequency of each prefix sum encountered.
+At every element
+We will update the current prefix sum.
+We will check whether (prefixSum - K) exists in the hash map.
+If it exists, it means we have found one or more subarrays whose sum is equal to K.
+We will then store the current prefix sum in the hash map.
+Finally, we will print the total count of such subarrays.
+Code
+#includeiostream
+#includeunordered_map
+using namespace std;
+
+int main()
+{
+    int array[]={1,2,3,-2,5};
+    int n=5;
+    int k=5;
+
+    unordered_mapint,int mp;
+
+    mp[0]=1;
+
+    int prefixSum=0;
+    int count=0;
+
+    for(int i=0;in;i++)
+    {
+        prefixSum+=array[i];
+
+        if(mp.find(prefixSum-k)!=mp.end())
+        {
+            count+=mp[prefixSum-k];
+        }
+
+        mp[prefixSum]++;
+    }
+
+    coutNumber of Subarrays = count;
+
+    return 0;
+}
+Example
+
+If we have the array
+
+1 2 3 -2 5
+
+and
+
+K = 5
+
+The subarrays whose sum is equal to 5 are
+
+2 3
+
+5
+
+The output will be
+
+Number of Subarrays = 2
+
+This is because there are 2 continuous subarrays whose sum is equal to 5.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that we traverse the array only once while using the hash map to perform constant-time lookups.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(n)
