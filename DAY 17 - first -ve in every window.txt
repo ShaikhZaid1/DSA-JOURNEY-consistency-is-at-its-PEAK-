@@ -1,0 +1,99 @@
+First Negative Number in Every Window
+Problem Statement
+
+We need to find the first negative number in every window of size K in an array.
+
+If a window does not contain any negative number, we will print 0.
+
+Approach
+
+To do this we will follow these steps:
+
+We will use the Sliding Window technique along with a Queue.
+We will traverse the array and store the indices of all negative elements in the queue.
+Before processing each window, we will remove the indices that are no longer part of the current window.
+Once the window size becomes K:
+If the queue is empty, we will print 0.
+Otherwise, we will print the first negative element using the index stored at the front of the queue.
+We will repeat this process until all windows have been processed.
+Code
+#include<iostream>
+#include<queue>
+using namespace std;
+
+int main()
+{
+    int array[]={12,-1,-7,8,-15,30,16,28};
+    int n=8;
+    int k=3;
+
+    queue<int> q;
+
+    for(int i=0;i<n;i++)
+    {
+        if(array[i]<0)
+        {
+            q.push(i);
+        }
+
+        while(!q.empty() && q.front()<=i-k)
+        {
+            q.pop();
+        }
+
+        if(i>=k-1)
+        {
+            if(q.empty())
+                cout<<0<<" ";
+            else
+                cout<<array[q.front()]<<" ";
+        }
+    }
+
+    return 0;
+}
+Example
+
+If we have the array
+
+12 -1 -7 8 -15 30 16 28
+
+and
+
+K = 3
+
+The windows are
+
+12 -1 -7
+
+-1 -7 8
+
+-7 8 -15
+
+8 -15 30
+
+-15 30 16
+
+30 16 28
+
+The output will be
+
+-1 -1 -7 -15 -15 0
+
+This is because we print the first negative number in every window. If a window does not contain any negative number, we print 0.
+
+Time Complexity
+
+The time complexity of this solution is
+
+O(n)
+
+This means that every element is processed at most once while traversing the array.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(k)
+
+This is because, in the worst case, the queue can store the indices of all negative elements present in the current window.
