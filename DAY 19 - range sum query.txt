@@ -1,0 +1,99 @@
+Range Sum Query
+Problem Statement
+
+We need to find the sum of elements between two given indices L and R in an array.
+
+Instead of calculating the sum for every query by traversing the array, we will use the Prefix Sum technique to answer each query efficiently.
+
+Approach
+
+To do this we will follow these steps:
+
+We will create a Prefix Sum array.
+The first element of the Prefix Sum array will be the first element of the original array.
+Every next element will store the sum of all the previous elements including the current element.
+If L = 0, the answer will simply be prefix[R].
+Otherwise, the answer will be prefix[R] - prefix[L-1].
+Code
+#include<iostream>
+using namespace std;
+
+int main()
+{
+    int array[]={2,4,6,8,10};
+    int n=5;
+
+    int prefix[n];
+
+    prefix[0]=array[0];
+
+    for(int i=1;i<n;i++)
+    {
+        prefix[i]=prefix[i-1]+array[i];
+    }
+
+    int L=1;
+    int R=3;
+
+    int sum;
+
+    if(L==0)
+    {
+        sum=prefix[R];
+    }
+    else
+    {
+        sum=prefix[R]-prefix[L-1];
+    }
+
+    cout<<"Range Sum = "<<sum;
+
+    return 0;
+}
+Example
+
+If we have the array
+
+2 4 6 8 10
+
+and
+
+L = 1
+R = 3
+
+The required range is
+
+4 6 8
+
+The sum of the elements is
+
+18
+
+This is because
+
+4 + 6 + 8 = 18
+
+Using the Prefix Sum array
+
+2 6 12 20 30
+
+The answer is calculated as
+
+prefix[3] - prefix[0]
+
+20 - 2 = 18
+Time Complexity
+
+The time complexity of this solution is
+
+Building Prefix Sum : O(n)
+
+Each Query : O(1)
+
+This means that we calculate the Prefix Sum array only once, and every range sum query can be answered in constant time.
+
+Space Complexity
+
+The space complexity of this solution is
+
+O(n)
